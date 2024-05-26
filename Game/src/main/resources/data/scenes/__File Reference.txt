@@ -1,0 +1,42 @@
+SCENE FILE REFERENCE
+IMPORTANT - MUST BE IN ORDER, NOTHING MAY BE MISSING
+FILE MUST BE NAMED "scene.txt" AND LOCATED IN THE DIRECTORY THE CODE
+IS BEING RUN FROM
+
+NOTE: Strings DO NOT NEED TO BE IN QUOTATION MARKS AND SPECIAL
+      CHARACTERS DO NOT NEED TO BE ESCAPED (i.e. \" to mean a ")
+
+FILE BEGINS IN LINE 1 OF THE ACTUAL scene.txt FILE
+---------------------------------------------------------
+Window Name              (String)
+Windowsize x             (int)
+Windowsize y             (int)
+show/hide turtle         (Boolean)
+Background Color         (String / from java.awt.Color)
+Turtle Color             (String / from java.awt.Color)
+Pen Color at Start       (String / from java.awt.Color)
+Turtle Speed             (int)
+Turtle TurnSpeed         (int)
+---------------------------------------------------------
+DATA FILE REFERENCE - THIS IS THE FILE THAT CONTAINS MODEL DATA
+IN THE FORM OF A LIST OF POSITIONS.
+
+THE FILE MUST BE NAMED "data.txt" AND LOCATED IN THE DIRECTORY THE CODE
+IS BEING RUN FROM
+
+The Turtle starts at 0,0 (the middle of the screen, visible coordinates
+                          range from -100 to 100, as double)
+The Pen defaults to being down.
+----------------------------------------------------------
+#pendown                 (Instruction, here pendown (to start drawing))
+(50.5,13)                (coordinates to move to, as screen positions from -100 to 100)
+#penup                   (Instruction, here penup (to stop drawing)
+                         (Empty lines will be ignored)
+//Comment                (Comments at the start of lines will also be ignored)
+[0,0]                    (Use square brackets to instantly transport
+                          the turtle to the given point, without drawing a line)
+a:90                     (Set brackets with "a:", followed by the angle, 0 being North,
+                          going clockwise)
+{50}                     (Moves the turtle forward by that amount of pixels)
+<0,0;50,0>               (Draws a line between the specified points, then
+                          puts the turtle back where it came from)
