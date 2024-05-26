@@ -17,24 +17,26 @@ public class SceneReader {
         String[] decodedFile = new String[fileContents.length];
         int index = 0;
         String s;
+        String n;
         for (int i = 0; i < fileContents.length; i++) {
-            s = 
+            s = fileContents[i];
+            n = fileContents[i+1];
             if (s.startsWith("//")) {
                 // 'tis a comment; do not put this line into the array
                 continue; // Skip this line and move on to the next one
             } else if (s.startsWith("\"Scene Name:\"")) {
                 decodedFile[index++] = "Scene Name";
-                decodedFile[index++] = s;
+                decodedFile[index++] = n;
                 i++;
             } else if (s.startsWith("\"Height:\"")) {
                 decodedFile[index++] = "Height";
-                decodedFile[index++] = s;
+                decodedFile[index++] = n;
                 i++;
             } else if (s.startsWith("\"Width:\"")) {
                 decodedFile[index++] = "Width";
-                decodedFile[index++] = s;
+                decodedFile[index++] = n;
                 i++;
-            } else if (s.startsWith)
+            } 
         }
         return Arrays.copyOf(decodedFile, index);
     }
