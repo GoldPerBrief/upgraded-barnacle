@@ -38,6 +38,9 @@ public class Game {
     }
 
     private void init() {
+        sceneReader = new SceneReader();
+        String[] readedScene = sceneReader.readScene("__selection.scene");
+
         // Set up an error callback. The default implementation will print the error message in System.err.
         GLFWErrorCallback.createPrint(System.err).set();
 
@@ -88,16 +91,7 @@ public class Game {
 
         renderer = new Renderer();
 
-        sceneReader = new SceneReader();
-    	String[] readedScene = sceneReader.readScene("__selection.scene");
-    	for (String s : readedScene) {
-    		System.out.println(s);
-    	}
-
-        String[] readedSceneData = sceneReader.readData("__selection.data");
-        for (String s : readedSceneData) {
-            System.out.println(s);
-        }
+        
     }
 
     private void loop() {

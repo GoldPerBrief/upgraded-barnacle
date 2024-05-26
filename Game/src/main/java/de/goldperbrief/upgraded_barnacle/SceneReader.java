@@ -14,6 +14,7 @@ public class SceneReader {
      * The file must be placed in the src/main/resources/data/scenes directory
      */
     public String[] readScene(String pFile) {
+        String[] fileContents = read(pFile).split(System.getProperty("line.separator"));
         String[] decodedFile = new String[fileContents.length];
         int index = 0;
         String s;
