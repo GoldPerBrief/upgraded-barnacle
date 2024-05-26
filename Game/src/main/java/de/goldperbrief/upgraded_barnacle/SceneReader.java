@@ -102,7 +102,7 @@ public class SceneReader {
                     }
 
                     de.goldperbrief.upgraded_barnacle.Renderer.numShapes++;
-                    System.out.println("There are now " + de.goldperbrief.upgraded_barnacle.Renderer.numShapes + " shapes to be drawn!")
+                    System.out.println("There are now " + de.goldperbrief.upgraded_barnacle.Renderer.numShapes + " shapes to be drawn!");
                 } else if (s.startsWith("#")) {
                     decodedFile[index] = s;
                 } else {
