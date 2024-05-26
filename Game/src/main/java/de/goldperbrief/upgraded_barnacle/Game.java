@@ -56,7 +56,7 @@ public class Game {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(Integer.valueOf(getPropertyFromSceneFile(currentScene,"width")), Integer.valueOf(getPropertyFromSceneFile(currentScene,"height")), getPropertyFromSceneFile(currentScene,"sceneName"), NULL, NULL);
+        window = glfwCreateWindow(Integer.parseInt(getPropertyFromSceneFile(currentScene,"width")), Integer.parseInt(getPropertyFromSceneFile(currentScene,"height")), getPropertyFromSceneFile(currentScene,"sceneName"), NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }

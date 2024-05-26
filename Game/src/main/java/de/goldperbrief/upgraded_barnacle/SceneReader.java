@@ -72,7 +72,13 @@ public class SceneReader {
                     }
                 } else if (s.startsWith("#Col ")) {
                     s = s.substring(4, s.length()-1);
-                    decodedFile[index] = getArrayType(s.substring(1,2),Integer.parseInt(s.substring(0,1)));
+                    String[] arrOfStr = s.split(", ");
+                    decodedFile[index] = new Object[2];
+                    decodedFile[index][0] = "Color"
+                    decodedFile[index][1] = getArrayType(s.substring(1,2),Integer.parseInt(s.substring(0,1)));
+                    for (int i = 0; i < decodedFile[index][1].length; i++) {
+                        decodedFile[index][1][i] = Float.
+                    }
                 }
             }
         }
