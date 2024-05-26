@@ -90,9 +90,14 @@ public class Game {
 
         sceneReader = new SceneReader();
     	String[] readedScene = sceneReader.readScene("__selection.scene");
-    	for (String element : readedScene) {
-    		System.out.println(element);
+    	for (String s : readedScene) {
+    		System.out.println(s);
     	}
+
+        String[] readedSceneData = sceneReader.readData("__selection.data");
+        for (String s : readedSceneData) {
+            System.out.println(s);
+        }
     }
 
     private void loop() {
