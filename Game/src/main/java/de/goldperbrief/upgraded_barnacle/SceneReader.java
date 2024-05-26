@@ -26,7 +26,7 @@ public class SceneReader {
                 n = fileContents[i+1];
                 if (s.startsWith("//")) {
                     // 'tis a comment; do not put this line into the array
-                    System.out.println("Comment while parsing file: " + s);
+                    // System.out.println("Comment while parsing file: " + s);
                     continue; // Skip this line and move on to the next one
                 } else if (s.startsWith("Scene Name:")) {
                     decodedFile[index++] = "sceneName";
@@ -91,7 +91,7 @@ public class SceneReader {
             if (s.startsWith("//")) {
                 // 'tis a comment; do not put this line into the array
                 // Print this comment to the console
-                System.out.println("Comment while parsing file: " + s);
+                // System.out.println("Comment while parsing file: " + s);
                 continue; // Skip this line and move on to the next one
             } else if (s.startsWith("#")) {
 
@@ -103,6 +103,8 @@ public class SceneReader {
 
                     de.goldperbrief.upgraded_barnacle.Renderer.numShapes++;
                     System.out.println("There are now " + de.goldperbrief.upgraded_barnacle.Renderer.numShapes + " shapes to be drawn!");
+                } else if (s.startsWith("!GL-END")) {
+                    decodedFile[index++] = s;
                 } else if (s.startsWith("#")) {
                     decodedFile[index] = s;
                 } else {
