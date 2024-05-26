@@ -1,8 +1,8 @@
-#Start Triangle;
+#GLStrt Triangle;
 #Col 3f 1.0, 0.0, 0.0;
-Vert 2f -0.5, -0.5;
+#Vrt 2f -0.5, -0.5;
 #Col 3f 0.0, 1.0, 0.0;
-Vert 2f 0.5, -0.5f;
+#Vrt 2f 0.5, -0.5f;
 #Col 3f 0.0, 0.0, 1.0;
-Vert 2f 0.0, 0.5f;
-#GLEND
+#Vrt 2f 0.0, 0.5f;
+#GL-END

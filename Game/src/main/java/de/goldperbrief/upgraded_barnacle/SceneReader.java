@@ -66,14 +66,14 @@ public class SceneReader {
                 // 'tis a comment; do not put this line into the array
                 continue; // Skip this line and move on to the next one
             } else if (s.startsWith("#")) {
-                if (s.startsWith("#Start ")) {
-                    if (s.substring(7) == "Triangle;") { // A Triangle
-                        decodedFile[index++] = "GL_TRIANGLES"; // Add the good thing for the triangle into the array
+                if (s.startsWith("#GLStrt ")) {
+                    if (s.substring(8) == "Triangle;") { // A Triangle
+                        decodedFile[index++] = new String[]{"GL_START","GL_TRIANGLES"}; // Add the good thing for the triangle into the array
                     }
                 } else if (s.startsWith("#Col ")) {
-                    s = s.substring(4, s.length-1);
+                    s = s.substring(4, s.length()-1);
                     if (s.substring(1,2) == "f") {
-                        decodedFile[index] = new Float[Integer.toInt(s.substring(0,1))];
+                        decodedFile[index] = getArrayType(s.substring(1,2),Integer.parseInt(s.substring(0,1)));
                     } 
                 }
             }
