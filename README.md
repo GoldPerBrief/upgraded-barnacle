@@ -4,7 +4,7 @@ Yes! Upgraded Barnacle
 
 # What is an "Upgraded Barnacle"?
 
-You don't know that? How uncivilised!
+You don't know that? How uncultured!
 
 Pah!
 
