@@ -1,8 +1,8 @@
-#color BLUE
-<0,0;100,0>
-<100,0;50,100>
-<50,100;0,0>
-#color BLACK
-<10,0;110,0>
-<110,0;60,100>
-<60,100;10,0>
+#Start Triangle;
+#Color {1.0f, 0.0f, 0.0f};
+Vert2f {-0.5f, -0.5f};
+#Color {0.0f, 1.0f, 0.0f};
+Vert2f {0.5f, -0.5f};
+#Color {0.0f, 0.0f, 1.0f};
+Vert2f {0.0f, 0.5f};
+#GLEND

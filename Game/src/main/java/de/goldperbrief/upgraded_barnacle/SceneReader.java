@@ -3,6 +3,7 @@ package de.goldperbrief.upgraded_barnacle;
 import java.io.InputStream;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class SceneReader {
 
@@ -55,17 +56,26 @@ public class SceneReader {
      * directory as argument.
      * The file must be placed in the src/main/resources/data/scenes directory
      */
-    public String[] readData(String pFile) {
+    public Object[] readData(String pFile) {
         String[] fileContents = read(pFile).split(System.getProperty("line.separator"));
-        String[] decodedFile = new String[fileContents.length];
+        Object[] decodedFile = new Object[fileContents.length];
         int index = 0;
 
         for (String s : fileContents) {
             if (s.startsWith("//")) {
                 // 'tis a comment; do not put this line into the array
                 continue; // Skip this line and move on to the next one
-            } else {
-                decodedFile[index++] = s;
+            } else if (s.startsWith("#")) {
+                if (s.startsWith("#Start ")) {
+                    if (s.substring(7) == "Triangle;") { // A Triangle
+                        decodedFile[index++] = "GL_TRIANGLES"; // Add the good thing for the triangle into the array
+                    }
+                } else if (s.startsWith("#Col ")) {
+                    s = s.substring(4, s.length-1);
+                    if (s.substring(1,2) == "f") {
+                        decodedFile[index] = new Float[Integer.toInt(s.substring(0,1))];
+                    } 
+                }
             }
         }
         return Arrays.copyOf(decodedFile, index);
@@ -88,9 +98,21 @@ public class SceneReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return text.toString();
+    }
 
+    private Object[] getArrayType(String s, int length) {
+        if (s == "f") {
+            return new Float[length];
+        } else if (s == "d") {
+            return new Double[length];
+        } else if (s == "b") {
+            return new Boolean[length];
+        } else if (s == "S") {
+            return new String[length];
+        } else {
+            return new Object[length];
+        }
     }
 
 }
