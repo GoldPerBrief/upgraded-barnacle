@@ -1,3 +1,5 @@
+
+// Start of the first shape
 !GLStrt Triangle;
 #Col 3f 1.0, 0.0, 0.0;
 #Vrt 2f -0.5, -0.5;

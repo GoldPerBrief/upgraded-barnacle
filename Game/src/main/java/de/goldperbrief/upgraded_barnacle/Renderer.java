@@ -27,7 +27,7 @@ public class Renderer {
 
     public void render() {
 
-    
+    	Object[] data = de.goldperbrief.upgraded_barnacle.SceneReader.readData("__scene");
     //     float[] vertex1 = {-0.5f, -0.5f};
     //     float[] vertex2 = {0.5f, -0.5f};
     //     float[] vertex3 = {0.0f, 0.5f};

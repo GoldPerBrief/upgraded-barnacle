@@ -95,9 +95,6 @@ public class Game {
 
     private String getPropertyFromSceneFile(String sceneName, String propertyName) {
         String property = "";
-        if (!sceneName.endsWith(".scene")) {
-            sceneName = sceneName + ".scene";
-        }
         String[] sceneInfo = sceneReader.readScene(sceneName);
         for (int i = 0; i < sceneInfo.length; i++) {
             // System.out.println(i + ": " + sceneInfo[i]);

@@ -15,6 +15,9 @@ public class SceneReader {
      * The file must be placed in the src/main/resources/data/scenes directory
      */
     public String[] readScene(String pFile) {
+        if (!pFile.endsWith(".scene")) {
+            pFile = pFile + ".scene";
+        }
         String[] fileContents = read(pFile).split(System.getProperty("line.separator"));
         String[] decodedFile = new String[fileContents.length];
         int index = 0;
@@ -83,8 +86,12 @@ public class SceneReader {
      * The file must be placed in the src/main/resources/data/scenes directory
      */
     public Object[] readData(String pFile) {
+        if (!pFile.endsWith(".data")) {
+            pFile = pFile + ".data";
+        }
         String[] fileContents = read(pFile).split(System.getProperty("line.separator"));
         Object[] decodedFile = new Object[fileContents.length];
+        de.goldperbrief.upgraded_barnacle.Renderer.numShapes = 0;
         int index = 0;
 
         for (String s : fileContents) {
@@ -93,26 +100,27 @@ public class SceneReader {
                 // Print this comment to the console
                 // System.out.println("Comment while parsing file: " + s);
                 continue; // Skip this line and move on to the next one
-            } else if (s.startsWith("#")) {
-
-                if (s.startsWith("!GLStrt ")) {
-
-                    if (s.substring(8).equals("Triangle;")) { // A Triangle
-                        decodedFile[index++] = new String[]{"GL_START","GL_TRIANGLES"}; // Add the good thing for the triangle into the array
-                    }
-
+            } else if (s.startsWith("!")) {
+                s = s.substring(1);
+                if (s.startsWith("GLStrt ")) {
+                    decodedFile[index++] = new Object[]{"glBegin", s.substring(7,s.length()-1)};
                     de.goldperbrief.upgraded_barnacle.Renderer.numShapes++;
                     System.out.println("There are now " + de.goldperbrief.upgraded_barnacle.Renderer.numShapes + " shapes to be drawn!");
-                } else if (s.startsWith("!GL-END")) {
-                    decodedFile[index++] = s;
-                } else if (s.startsWith("#")) {
-                    decodedFile[index] = s;
-                } else {
-                    // cant decode -> ignore line
-                    continue;
+                } else if (s.startsWith("GL-END")) {
+                    decodedFile[index++] = "glEnd";
                 }
+
+                
+            } else if (s.startsWith("!GL-END")) {
+                decodedFile[index++] = s;
+            } else if (s.startsWith("#")) {
+                decodedFile[index] = s.substring(1);
+            } else {
+                // cant decode -> ignore line
+                continue;
             }
         }
+        
         return Arrays.copyOf(decodedFile, index);
     }
 
