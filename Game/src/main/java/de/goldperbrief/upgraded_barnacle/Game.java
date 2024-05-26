@@ -21,6 +21,7 @@ public class Game {
     private long window;
     private Renderer renderer;
     private SceneReader sceneReader;
+    private String currentScene;
 
     public void run() {
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");
@@ -39,6 +40,7 @@ public class Game {
 
     private void init() {
         sceneReader = new SceneReader();
+        currentScene = "__selection";
 
         // Set up an error callback. The default implementation will print the error message in System.err.
         GLFWErrorCallback.createPrint(System.err).set();
@@ -54,7 +56,7 @@ public class Game {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
+        window = glfwCreateWindow(Integer.valueOf(getPropertyFromSceneFile(currentScene,"width")), Integer.valueOf(getPropertyFromSceneFile(currentScene,"height")), getPropertyFromSceneFile(currentScene,"sceneName"), NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -91,10 +93,22 @@ public class Game {
         renderer = new Renderer();
     }
 
-    private String getPropertyFromSceneFile(String propertyName) {
-        String property;
-        String[] readedScene = sceneReader.readScene("__selection.scene");
+    private String getPropertyFromSceneFile(String sceneName, String propertyName) {
+        String property = "";
+        if (!sceneName.endsWith(".scene")) {
+            sceneName = sceneName + ".scene";
+        }
+        String[] sceneInfo = sceneReader.readScene(sceneName);
+        for (int i = 0; i < sceneInfo.length; i++) {
+            // System.out.println(i + ": " + sceneInfo[i]);
+            if (sceneInfo[i] == propertyName && 
+                i+1 < sceneInfo.length) {
+                property = sceneInfo[i+1];
+                break;
+            }
+        }
 
+        // System.out.println(propertyName + ": " + property);
         return property;
     }
 

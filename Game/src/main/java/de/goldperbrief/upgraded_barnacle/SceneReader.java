@@ -26,21 +26,22 @@ public class SceneReader {
                 if (s.startsWith("//")) {
                     // 'tis a comment; do not put this line into the array
                     continue; // Skip this line and move on to the next one
-                } else if (s.startsWith("\"Scene Name:\"")) {
+                } else if (s.startsWith("Scene Name:")) {
                     decodedFile[index++] = "sceneName";
                     decodedFile[index++] = n;
                     i++;
-                } else if (s.startsWith("\"Height:\"")) {
+                    // System.out.println(s + "\n" + n);
+                } else if (s.startsWith("Height:")) {
                     decodedFile[index++] = "height";
                     decodedFile[index++] = n;
                     i++;
-                } else if (s.startsWith("\"Width:\"")) {
+                    // System.out.println(s + "\n" + n);
+                } else if (s.startsWith("Width:")) {
                     decodedFile[index++] = "width";
                     decodedFile[index++] = n;
                     i++;
+                    // System.out.println(s + "\n" + n);
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                continue;
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -35,8 +35,6 @@ public class Renderer {
         drawTriangle(vertex1, vertex2, vertex3, color1, color2, color3);
     }
 
-    
-
     private void drawTriangle(float[] vertex1, float[] vertex2, float[] vertex3, float[] color1, float[] color2, float[] color3) {
         glBegin(GL_TRIANGLES);
         glColor3f(color1[0], color1[1], color1[2]);
