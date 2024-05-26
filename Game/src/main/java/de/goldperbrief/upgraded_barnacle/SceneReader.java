@@ -20,24 +20,30 @@ public class SceneReader {
         String s;
         String n;
         for (int i = 0; i < fileContents.length; i++) {
-            s = fileContents[i];
-            n = fileContents[i+1];
-            if (s.startsWith("//")) {
-                // 'tis a comment; do not put this line into the array
-                continue; // Skip this line and move on to the next one
-            } else if (s.startsWith("\"Scene Name:\"")) {
-                decodedFile[index++] = "Scene Name";
-                decodedFile[index++] = n;
-                i++;
-            } else if (s.startsWith("\"Height:\"")) {
-                decodedFile[index++] = "Height";
-                decodedFile[index++] = n;
-                i++;
-            } else if (s.startsWith("\"Width:\"")) {
-                decodedFile[index++] = "Width";
-                decodedFile[index++] = n;
-                i++;
-            } 
+            try {
+                s = fileContents[i];
+                n = fileContents[i+1];
+                if (s.startsWith("//")) {
+                    // 'tis a comment; do not put this line into the array
+                    continue; // Skip this line and move on to the next one
+                } else if (s.startsWith("\"Scene Name:\"")) {
+                    decodedFile[index++] = "sceneName";
+                    decodedFile[index++] = n;
+                    i++;
+                } else if (s.startsWith("\"Height:\"")) {
+                    decodedFile[index++] = "height";
+                    decodedFile[index++] = n;
+                    i++;
+                } else if (s.startsWith("\"Width:\"")) {
+                    decodedFile[index++] = "width";
+                    decodedFile[index++] = n;
+                    i++;
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                continue;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return Arrays.copyOf(decodedFile, index);
     }
