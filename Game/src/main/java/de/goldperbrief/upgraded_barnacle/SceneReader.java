@@ -72,9 +72,7 @@ public class SceneReader {
                     }
                 } else if (s.startsWith("#Col ")) {
                     s = s.substring(4, s.length()-1);
-                    if (s.substring(1,2) == "f") {
-                        decodedFile[index] = getArrayType(s.substring(1,2),Integer.parseInt(s.substring(0,1)));
-                    } 
+                    decodedFile[index] = getArrayType(s.substring(1,2),Integer.parseInt(s.substring(0,1)));
                 }
             }
         }
