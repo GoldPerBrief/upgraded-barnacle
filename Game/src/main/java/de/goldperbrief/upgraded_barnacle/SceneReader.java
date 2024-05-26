@@ -26,6 +26,7 @@ public class SceneReader {
                 n = fileContents[i+1];
                 if (s.startsWith("//")) {
                     // 'tis a comment; do not put this line into the array
+                    System.out.println("Comment while parsing file: " + s);
                     continue; // Skip this line and move on to the next one
                 } else if (s.startsWith("Scene Name:")) {
                     decodedFile[index++] = "sceneName";
@@ -33,15 +34,40 @@ public class SceneReader {
                     i++;
                     // System.out.println(s + "\n" + n);
                 } else if (s.startsWith("Height:")) {
-                    decodedFile[index++] = "height";
-                    decodedFile[index++] = n;
-                    i++;
+                    boolean isValidInt = true;
+                    try {
+                        Integer.parseInt(n);
+                    } catch (NumberFormatException e) {
+                        isValidInt = false;
+                        continue; // Not a valid Integer - Skip.
+                    }
+                    if (isValidInt) {
+                        decodedFile[index++] = "height";
+                        decodedFile[index++] = n;
+                        i++;
+                    } else {
+                        continue; // Skip this line and move on
+                    }
                     // System.out.println(s + "\n" + n);
                 } else if (s.startsWith("Width:")) {
-                    decodedFile[index++] = "width";
-                    decodedFile[index++] = n;
-                    i++;
+                    boolean isValidInt = true;
+                    try {
+                        Integer.parseInt(n);
+                    } catch (NumberFormatException e) {
+                        isValidInt = false;
+                        continue; // Not a valid Integer - Skip.
+                    }
+                    if (isValidInt) {
+                        decodedFile[index++] = "width";
+                        decodedFile[index++] = n;
+                        i++;
+                    } else {
+                        continue; // Skip this line and move on
+                    }
                     // System.out.println(s + "\n" + n);
+                } else {
+                    // Something else, that the decoder can't decode
+                    continue; // Thus, skip it
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,18 +90,27 @@ public class SceneReader {
         for (String s : fileContents) {
             if (s.startsWith("//")) {
                 // 'tis a comment; do not put this line into the array
+                // Print this comment to the console
+                System.out.println("Comment while parsing file: " + s);
                 continue; // Skip this line and move on to the next one
             } else if (s.startsWith("#")) {
+
                 if (s.startsWith("!GLStrt ")) {
+
                     if (s.substring(8).equals("Triangle;")) { // A Triangle
                         decodedFile[index++] = new String[]{"GL_START","GL_TRIANGLES"}; // Add the good thing for the triangle into the array
                     }
+
+                    de.goldperbrief.upgraded_barnacle.Renderer.numShapes++;
+                    System.out.println("There are now " + de.goldperbrief.upgraded_barnacle.Renderer.numShapes + " shapes to be drawn!")
                 } else if (s.startsWith("#")) {
                     decodedFile[index] = s;
-                    }
+                } else {
+                    // cant decode -> ignore line
+                    continue;
                 }
             }
-        
+        }
         return Arrays.copyOf(decodedFile, index);
     }
 

@@ -14,6 +14,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class Renderer {
 
+	public static int numShapes = 0;
     public Renderer() {
         // Set the clear color (this can be customized as needed)
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
