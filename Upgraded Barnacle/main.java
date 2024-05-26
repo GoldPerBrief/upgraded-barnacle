@@ -17,7 +17,7 @@ public class main {
 	private long window;
 
 	public void run() {
-		System.out.println("Hello LWJGL " + Version.getVersion() + "!");
+		System.out.println("asd HELLO LWJGL " + Version.getVersion() + "!");
 
 		init();
 		loop();
@@ -39,7 +39,7 @@ public class main {
 		// Initialize GLFW. Most GLFW functions will not work before doing this.
 		if ( !glfwInit() )
 			throw new IllegalStateException("Unable to initialize GLFW");
-
+			
 		// Configure GLFW
 		glfwDefaultWindowHints(); // optional, the current window hints are already the default
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
@@ -106,7 +106,7 @@ public class main {
 			// invoked during this call.
 			glfwPollEvents();
 		}
-	}
+        }
 
 	public static void main(String[] args) {
 		new main().run();
