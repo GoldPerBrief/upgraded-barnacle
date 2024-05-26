@@ -13,12 +13,14 @@ import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import de.goldperbrief.upgraded_barnacle.Renderer;
+import de.goldperbrief.upgraded_barnacle.SceneReader;
 
 public class Game {
 
     // The window handle
     private long window;
     private Renderer renderer;
+    private SceneReader sceneReader;
 
     public void run() {
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");
@@ -85,6 +87,12 @@ public class Game {
         GL.createCapabilities();
 
         renderer = new Renderer();
+
+        sceneReader = new SceneReader();
+    	String[] readedScene = sceneReader.readScene("__selection.scene");
+    	for (String element : readedScene) {
+    		System.out.println(element);
+    	}
     }
 
     private void loop() {
