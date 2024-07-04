@@ -110,11 +110,11 @@ public class SceneReader {
                     decodedFile[index++] = "glEnd";
                 }
 
-                
+
             } else if (s.startsWith("!GL-END")) {
                 decodedFile[index++] = s;
             } else if (s.startsWith("#")) {
-                decodedFile[index] = s.substring(1);
+                decodedFile[index++] = decodeArray(s);
             } else {
                 // cant decode -> ignore line
                 continue;
@@ -144,18 +144,50 @@ public class SceneReader {
         return text.toString();
     }
 
+    private Object[] decodeArray(String strToDecode) {
+        int counter1, counter2, counter3;
+
+        Object[] array = new Object[2];
+        Object[] arr1 = getArrayType(strToDecode.substring(6,7),Integer.parseInt(strToDecode.substring(5,6)));
+
+        array[0] = "gl" + getDataType(strToDecode.substring(1,4)) + strToDecode.substring(5,7);
+
+        counter1 = 8;
+        counter2 = 11;
+        counter3 = 12;
+
+        for (int i = 0; i < arr1.length; i++) {
+            if (true) {}
+        }
+
+        array[1] = arr1;
+        return array;
+    }
+
     private Object[] getArrayType(String s, int length) {
-        if (s == "f") {
+        switch (s) {
+        case "f":
             return new Float[length];
-        } else if (s == "d") {
+        case "d":
             return new Double[length];
-        } else if (s == "b") {
+        case "b":
             return new Boolean[length];
-        } else if (s == "S") {
+        case "S":
             return new String[length];
-        } else {
+        case "o":
             return new Object[length];
         }
+        return new Object[length];
+    }
+
+    private String getDataType(String s) {
+        switch (s) {
+        case "Col":
+            return "Color";
+        case "Vrt":
+            return "Vertex";
+        }
+        return "";
     }
 
 }

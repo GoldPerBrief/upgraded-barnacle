@@ -15,6 +15,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 public class Renderer {
 
 	public static int numShapes = 0;
+    public static de.goldperbrief.upgraded_barnacle.SceneReader sceneReader = new de.goldperbrief.upgraded_barnacle.SceneReader();
     public Renderer() {
         // Set the clear color (this can be customized as needed)
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -27,7 +28,8 @@ public class Renderer {
 
     public void render() {
 
-    	Object[] data = de.goldperbrief.upgraded_barnacle.SceneReader.readData("__scene");
+    	Object[] data = sceneReader.readData("__selection");
+
     //     float[] vertex1 = {-0.5f, -0.5f};
     //     float[] vertex2 = {0.5f, -0.5f};
     //     float[] vertex3 = {0.0f, 0.5f};
